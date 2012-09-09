@@ -1,23 +1,4 @@
-require 'pathname'
-
-$LOAD_PATH << Pathname.new(__FILE__).parent.parent + 'lib'
-
-require 'rubygems'
-require 'spec'
-require 'rack/test'
-require 'wsse'
-require 'rexml/document'
-require 'atomos'
-
-include Atomos
-
-Atomos.configure({
-  :environment => :test,
-  :database    => 'sqlite3::memory:',
-  :username    => 'admin',
-  :password    => 'password',
-  :timestamp   => '00:00'
-})
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Application do
   include Rack::Test::Methods
@@ -139,5 +120,4 @@ describe Application do
 
     last_response.status.should == 400
   end
-
 end

@@ -30,7 +30,7 @@ module Atomos
     end
 
     def content
-      @html ||= RDiscount.new(markdown).to_html
+      @html ||= RDiscount.new(markdown).to_html rescue ''
     end
 
     def markdown

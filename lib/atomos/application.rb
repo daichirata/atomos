@@ -49,24 +49,19 @@ module Atomos
     configure do
       set :root,   File.expand_path('../..', File.dirname(__FILE__))
       set :static, true
-
       set :url,    ''
       set :title,  'Atomos Blog'
       set :author, 'Anonymous'
-
       set :username, 'admin'
       set :password, 'password'
-
       set :per_page, 10
-
       set :timezone, nil
-
       set :haml, :escape_html => true, :ugly => false, :attr_wrapper => '"'
     end
 
     before do
-      @config = options
-      @title  = options.title.dup
+      @config = settings
+      @title  = settings.title.dup
     end
 
     get '/' do

@@ -1,10 +1,17 @@
 require 'rubygems'
-require 'rake'
-require 'spec/rake/spectask'
-
 task :default => :spec
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_opts = ['--format specdoc', '--color']
-  t.spec_files = FileList['spec/*_spec.rb']
+task 'spec:setup' do
+  ENV['RACK_ENV'] = 'test'
+end
+
+begin
+  require 'rspec/core/rake_task'
+
+  RSpec::Core::RakeTask.new(:spec => 'spec:setup') do |spec|
+    spec.pattern = 'spec/*_spec.rb'
+    spec.rspec_opts = ['-cfs']
+  end
+rescue LoadError => e
+  p e
 end
