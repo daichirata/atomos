@@ -1,14 +1,13 @@
-#!/usr/bin/env rackup
+if defined?(Encoding) && Encoding.respond_to?('default_external')
+   Encoding.default_external = 'utf-8'
+end
 
-$LOAD_PATH << 'lib'
+$:.unshift File.dirname(__FILE__)
+$:.unshift File.join(File.dirname(__FILE__), 'lib')
 
 require 'rubygems'
-require 'atomos'
-require 'yaml'
+require 'bundler'
+Bundler.setup
 
-begin
-  opts = YAML.load_file('config.yaml')
-  run Atomos.new(opts)
-rescue Errno::ENOENT
-  run Atomos.new
-end
+require 'atomos'
+run Atomos.new

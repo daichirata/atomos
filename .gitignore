@@ -1,4 +1,8 @@
-tmp
-entries.db
-config.yaml
-.htaccess
+config.yml
+/db/*.sqlite3
+/bundle
+/vendor/bundle
+/vendor/gem
+/.bundle
+.DS_Store
+/.rvmrc

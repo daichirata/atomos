@@ -1,0 +1,25 @@
+## settings
+:url:    http://localhost:9292
+:title:  Atomos Blog
+:author: Anonymous
+
+# authorization (WSSE)
+:username: admin
+:password: password
+
+# the number of entries rendered per page
+:per_page: 10
+
+# use a timezone different from the server
+# :timezone: +09:00
+
+# specify your data-store as URL or hash
+
+:database:
+  :production:
+    <%= ENV['DATABASE_URL'] || ENV['HEROKU_POSTGRESQL_VIOLET_URL'] %>
+  :development:
+    sqlite3://<%= root %>/db/development.sqlite3
+  :test:
+    <%= ENV['DATABASE_URL'] || "sqlite3://#{root}/db/test.sqlite3" %>
+
